@@ -1,12 +1,63 @@
-# React + Vite
+# Parking Lot Admin Interface
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Problem Statement
+Welcome to the Parking Lot Admin Interface!  
+The objective of this project is to build a **functional web application** that acts as an admin panel for the efficient management of a parking lot.  
 
-Currently, two official plugins are available:
+The application provides core features such as **parking slot allocation** and **bill settlement**, utilising ReactJS components with fully client-side logic.  
+No backend is required.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Parking Layout Page
+- Fixed **4x6 grid** parking layout.
+- **Slot Assignment**: Assign cars to empty slots by entering the car’s registration number.
+- **Occupied Slots**: Display car’s registration number, entry time, and time elapsed since allocation.
+- **Revenue Tracking**: Total revenue updates when a slot is closed.
+
+### Billing Page
+- **Receipt Preview**: Generate a receipt after entering a registration number.
+- **Billing Logic**:
+  - Initial **30 seconds → $5**
+  - Every additional **10 seconds → $1**
+- **Close Parking**: Remove a car from its slot, making the slot available for reassignment.
+
+---
+
+## Screenshots
+
+### Parking Layout
+![Parking Layout](public/ParkingLotSS1.png)
+
+### Car Registration
+![Car Registration](public/RegistedCarSS.png)
+
+### Billing Page
+![Billing Page](public/BillingSS.png)
+
+---
+
+## Tech Stack
+- ReactJS (Vite)
+- Redux Toolkit
+- React Router DOM
+- Tailwind CSS
+
+---
+
+## Installation
+
+```bash
+# Clone the repo
+git clone https://github.com/your-username/parking-lot-admin.git
+
+# Navigate into project
+cd parking-lot-admin
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm run dev
