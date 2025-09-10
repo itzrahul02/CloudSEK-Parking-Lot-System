@@ -22,6 +22,11 @@ import { BookedSlotInfo } from "./BookedInfo";
 export const Grid = () => {
   const dispatch=useDispatch()
   const {row,col,grid,isModelOpen,selectedSlot,isBookedModelOpen,bookedValues,entryTime}=useSelector((state)=>state.parking)
+  
+  useEffect(() => {
+  dispatch(createGrid());
+}, [dispatch]);  
+
   return (
     <div className="bg-slate-200 border border-slate-300 p-4 flex flex-col gap-8">
       <div className="bg-white p-4 rounded-md shadow font-semibold flex gap-2 justify-center flex-wrap items-center">
@@ -53,12 +58,11 @@ export const Grid = () => {
         </button>
       </div>
 
-      {/* Stats */}
       <div className="flex justify-between items-center gap-4 md:gap-2 lg:gap-4 flex-wrap md:flex-nowrap">
         <TotalSlots row={row} col={col} />
-        <Occupied row={row} col={col} />
-        <Available row={row} col={col} />
-        <TotalRevenue row={row} col={col} />
+        <Occupied/>
+        <Available/>
+        <TotalRevenue/>
       </div>
 
       <div className="bg-white p-4 pb-4 rounded-md shadow">

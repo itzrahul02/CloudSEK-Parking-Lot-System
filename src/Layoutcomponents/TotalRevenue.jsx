@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { useSelector } from "react-redux";
 
-export const TotalRevenue = ({ row, col }) => {
+export const TotalRevenue = () => {
   const {revenue}=useSelector((state)=>state.parking)
   return (
     <div className="flex flex-col

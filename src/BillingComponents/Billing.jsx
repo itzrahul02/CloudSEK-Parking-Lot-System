@@ -76,87 +76,96 @@ export const Billing = () => {
 }, []);
 
   return (
-    <div className="p-4 bg-slate-100 flex flex-col gap-8 sm:flex-row">
-      {/* Left Panel */}
-      <div className="bg-white p-6 rounded-md shadow-md flex-1 flex flex-col gap-4">
-        <h2 className="text-lg font-semibold">Generate Receipt</h2>
-        <label className="font-medium">Car Registration Number</label>
-        <input
-          type="text"
-          value={regNumber}
-          onChange={(e) => setRegNumber(e.target.value)}
-          placeholder="Enter registration number"
-          className="border rounded-md p-2 w-full"
-        />
-        <button
-          className="bg-black text-white px-4 py-2 rounded-md mt-4 hover:bg-gray-800 transition-colors"
-          onClick={generateReceipt}
-        >
-          Generate Receipt
-        </button>
-      </div>
+    <div className="p-4 bg-slate-100 flex flex-col gap-8 sm:flex-row sm:items-start">
+  {/* Left Panel */}
+  <div className="bg-white p-6 rounded-md shadow-md flex-1 flex flex-col gap-4 w-full sm:w-1/2">
+    <h2 className="text-lg font-semibold">Generate Receipt</h2>
+    <label className="font-medium">Car Registration Number</label>
+    <input
+      type="text"
+      value={regNumber}
+      onChange={(e) => setRegNumber(e.target.value)}
+      placeholder="Enter registration number"
+      className="border rounded-md p-2 w-full"
+    />
+    <button
+      className="bg-black text-white px-4 py-2 rounded-md mt-4 hover:bg-gray-800 transition-colors w-full sm:w-auto"
+      onClick={generateReceipt}
+    >
+      Generate Receipt
+    </button>
+  </div>
 
-      {/* Right Panel */}
-      <div className="bg-white p-6 rounded-md shadow-md flex-1 flex flex-col gap-4">
-        <div className="flex items-center justify-between">
-        <div className="text-xl font-semibold ">Receipt Preview</div>
-        {receipt && (
-        <div className="flex gap-2 justify-end">
-          <button className="bg-gray-300 px-3 py-1 rounded-md hover:bg-gray-400"><FontAwesomeIcon icon={faPrint}/> Print</button>
-          <button onClick={handleCloseParking} className="bg-black text-white px-3 py-1 rounded-md hover:bg-gray-800"><FontAwesomeIcon icon={faCar}/> Close Parking</button>
-        </div>
-      )}
-        </div>
-        {receipt ? (
-          <div className="border bg-[#99a1af21] border-gray-200 p-4 rounded-md flex flex-col gap-2">
-            <h3 className="text-center text-xl font-semibold">PARKING RECEIPT</h3>
-            <div className="my-2 w-16 border-1 border-[#99A1AF46] mx-auto" />
-            <div className="flex justify-between">
-              <span>Registration Number:</span>
-              <span>{receipt.regNumber}</span>
-            </div>
-            <div className="flex justify-between">
-              <span>Parking Slot:</span>
-              <span>{receipt.slot}</span>
-            </div>
-            <div className="flex justify-between">
-              <span>Entry Time:</span>
-              <span>{receipt.entryTime}</span>
-            </div>
-            <div className="flex justify-between">
-              <span>Exit Time:</span>
-              <span>{receipt.exitTime}</span>
-            </div>
-            <div className="flex justify-between">
-              <span>Duration:</span>
-              <span>{receipt.duration}</span>
-            </div>
-            <div className="my-2 w-full border-[1px] border-[#99A1AF46] mx-auto" />
-            <div className="flex justify-between">
-              <span>Initial 30 seconds:</span>
-              <span>${receipt.initialCost}.00</span>
-            </div>
-            <div className="flex justify-between">
-              <span>Additional time ({receipt.additionalCost} intervals):</span>
-              <span>${receipt.additionalCost}.00</span>
-            </div>
-            <div className="my-2 w-full border-1 border-[#99A1AF46] mx-auto" />
-            <div className="flex justify-between font-bold text-lg">
-              <span>Total Amount:</span>
-              <span>${receipt.totalAmount}.00</span>
-            </div>
-            <div className="my-2 w-full border-1 border-[#99A1AF46] mx-auto" />
-            <p className="text-center text-sm text-gray-500">
-              Thank you for parking with us! <br />
-              Receipt generated on {receipt.generatedOn}
-            </p>
+  {/* Right Panel */}
+  <div className="bg-white p-6 rounded-md shadow-md flex-1 flex flex-col gap-4 w-full sm:w-1/2">
+    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+      <div className="text-xl font-semibold">Receipt Preview</div>
+      {receipt && (
+          <div className="flex flex-wrap gap-2 justify-center sm:justify-end text-sm md:text-xs lg:text-sm">
+            <button
+              onClick={()=>window.print()}
+              className="bg-gray-300 px-2 md:px-3 py-1 rounded-md hover:bg-gray-400 flex items-center gap-1"
+            >
+              <FontAwesomeIcon icon={faPrint} /> Print
+            </button>
+            <button
+              onClick={handleCloseParking}
+              className="bg-black text-white px-2 md:px-3 py-1 rounded-md hover:bg-gray-800 flex items-center gap-1"
+            >
+              <FontAwesomeIcon icon={faCar} /> Close Parking
+            </button>
           </div>
-        ) : (
-          <p className="text-gray-500 text-center">No receipt generated yet.</p>
-        )}
-        
-      </div>
-    
+      )}
     </div>
+    {receipt ? (
+      <div className="border bg-[#99a1af21] border-gray-200 p-4 rounded-md flex flex-col gap-2 overflow-x-auto">
+        <h3 className="text-center text-xl font-semibold">PARKING RECEIPT</h3>
+        <div className="my-2 w-16 border-1 border-[#99A1AF46] mx-auto" />
+        <div className="flex justify-between">
+          <span>Registration Number:</span>
+          <span>{receipt.regNumber}</span>
+        </div>
+        <div className="flex justify-between">
+          <span>Parking Slot:</span>
+          <span>{receipt.slot}</span>
+        </div>
+        <div className="flex justify-between">
+          <span>Entry Time:</span>
+          <span>{receipt.entryTime}</span>
+        </div>
+        <div className="flex justify-between">
+          <span>Exit Time:</span>
+          <span>{receipt.exitTime}</span>
+        </div>
+        <div className="flex justify-between">
+          <span>Duration:</span>
+          <span>{receipt.duration}</span>
+        </div>
+        <div className="my-2 w-full border-[1px] border-[#99A1AF46] mx-auto" />
+        <div className="flex justify-between">
+          <span>Initial 30 seconds:</span>
+          <span>${receipt.initialCost}.00</span>
+        </div>
+        <div className="flex justify-between">
+          <span>Additional time ({receipt.additionalCost} intervals):</span>
+          <span>${receipt.additionalCost}.00</span>
+        </div>
+        <div className="my-2 w-full border-1 border-[#99A1AF46] mx-auto" />
+        <div className="flex justify-between font-bold text-lg">
+          <span>Total Amount:</span>
+          <span>${receipt.totalAmount}.00</span>
+        </div>
+        <div className="my-2 w-full border-1 border-[#99A1AF46] mx-auto" />
+        <p className="text-center text-sm text-gray-500">
+          Thank you for parking with us! <br />
+          Receipt generated on {receipt.generatedOn}
+        </p>
+      </div>
+    ) : (
+      <p className="text-gray-500 text-center">No receipt generated yet.</p>
+    )}
+  </div>
+</div>
+
   );
 };

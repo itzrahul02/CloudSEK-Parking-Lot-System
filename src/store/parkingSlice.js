@@ -20,7 +20,7 @@ const parkingSlice= createSlice({
             console.log(action);
             state.row=action?.payload
         },
-        setCol:(state,action)=>{
+        setCols:(state,action)=>{
             state.col=action?.payload
         },
         createGrid:(state)=>{
