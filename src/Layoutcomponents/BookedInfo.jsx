@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { getLabel } from "../utils/getLabel";
 import { getElapsedTime } from "../utils/TimeElapsed";
@@ -13,7 +13,7 @@ export const BookedSlotInfo=({slot,onClose})=>{
             bookedValues.entryTime
             )}&slot=${getLabel(slot.row, slot.col)}`
   );
-    }
+    } 
     return(
         <div className="fixed inset-0 flex items-center justify-center bg-black/50 ">
             <div className="bg-white rounded-lg shadow-lg w-[400px] ">
@@ -44,8 +44,18 @@ export const BookedSlotInfo=({slot,onClose})=>{
                 </div>
     
                 <p className="text-gray-600">
-                <strong>Entry Time:</strong> {bookedValues.entryTime}
+                <strong>Entry Time:</strong>{" "}
+                {new Date(bookedValues.entryTime).toLocaleString("en-US", {
+                    month: "short",
+                    day: "numeric",
+                    year: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    second: "2-digit",
+                })}
                 </p>
+
+                
                 <p>
                     <strong>Time Elapsed</strong> {getElapsedTime(bookedValues.entryTime)}
                 </p>
