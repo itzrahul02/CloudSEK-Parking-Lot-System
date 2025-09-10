@@ -49,7 +49,6 @@ const generateReceipt = () => {
   const minutes = Math.floor((durationSec % 3600) / 60);
   const seconds = durationSec % 60;
 
-  // Updated interval logic
   let initialCost = 5;
   let additionalCost = 0;
 
