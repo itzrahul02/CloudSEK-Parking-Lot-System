@@ -47,17 +47,5 @@ No backend is required.
 
 ---
 
-## Installation
 
-```bash
-# Clone the repo
-git clone https://github.com/your-username/parking-lot-admin.git
 
-# Navigate into project
-cd parking-lot-admin
-
-# Install dependencies
-npm install
-
-# Start the development server
-npm run dev
