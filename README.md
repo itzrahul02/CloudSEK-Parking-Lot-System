@@ -9,6 +9,10 @@ No backend is required.
 
 ---
 
+
+## Explation Video
+-https://www.loom.com/share/f0e395f5d3d4484497d5bf857051cd80
+
 ## Features
 
 ### Parking Layout Page
@@ -46,6 +50,5 @@ No backend is required.
 - Tailwind CSS
 
 ---
-
 
 
