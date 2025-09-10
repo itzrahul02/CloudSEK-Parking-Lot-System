@@ -15,18 +15,17 @@ import {
   registerCar,
   openBookedModel,
   closeBookedModel,
-  setRevenue
+  resetParking
 } from "../store/parkingSlice";
 import { BookedSlotInfo } from "./BookedInfo";
 
 export const Grid = () => {
   const dispatch=useDispatch()
-  const {row,col,grid,isModelOpen,selectedSlot,isBookedModelOpen,bookedValues,entryTime}=useSelector((state)=>state.parking)
-  
-  useEffect(() => {
-  dispatch(createGrid());
-}, [dispatch]);  
-
+  const {row,col,grid,isModelOpen,selectedSlot,isBookedModelOpen,bookedValues,entryTime}=useSelector((state)=>state.parking)  
+  const handleReset=()=>{
+    dispatch(resetParking())
+    localStorage.clear()
+  }
   return (
     <div className="bg-slate-200 border border-slate-300 p-4 flex flex-col gap-8">
       <div className="bg-white p-4 rounded-md shadow font-semibold flex gap-2 justify-center flex-wrap items-center">
@@ -52,9 +51,13 @@ export const Grid = () => {
         
         <button
           className="bg-black font-semibold text-white px-4 rounded-sm"
-          onClick={()=>dispatch(createGrid())}
+          onClick={()=>{dispatch(createGrid())}}
         >
           Create
+        </button>
+        <button className="bg-black font-semibold text-white px-4 rounded-sm"
+        onClick={handleReset}
+        >Reset
         </button>
       </div>
 

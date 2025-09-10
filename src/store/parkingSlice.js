@@ -25,6 +25,12 @@ const parkingSlice= createSlice({
         },
         createGrid:(state)=>{
             state.grid=[]
+            state.isModelOpen = false
+            state.selectedSlot = null
+            state.isBookedModelOpen = false
+            state.bookedValues = null
+            state.entryTime = null
+            state.revenue = 0
             for(let i=1;i<=state.row;i++){
                 for (let j=1;j<=state.col;j++){
                     state.grid.push({
@@ -79,7 +85,19 @@ const parkingSlice= createSlice({
             }
             return eachSlot;
         });
+        },
+        resetParking: (state) => {
+            state.row = 4
+            state.col = 6
+            state.grid = []
+            state.isModelOpen = false
+            state.selectedSlot = null
+            state.isBookedModelOpen = false
+            state.bookedValues = null
+            state.entryTime = null
+            state.revenue = 0
         }
+
 
     }
 })
@@ -95,7 +113,8 @@ export const {
   registerCar,
   openBookedModel,
   closeBookedModel,
-  setRevenue
+  setRevenue,
+  resetParking
 } = parkingSlice.actions;
 
 export default parkingSlice.reducer;
