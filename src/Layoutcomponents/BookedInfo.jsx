@@ -5,7 +5,7 @@ import { getElapsedTime } from "../utils/TimeElapsed";
 import {useNavigate} from "react-router-dom"
 export const BookedSlotInfo=({slot,onClose})=>{
     const {bookedValues}=useSelector((state)=>state.parking)
-    console.log(bookedValues);
+
     const router = useNavigate();
     const onBilling=()=>{
         router(

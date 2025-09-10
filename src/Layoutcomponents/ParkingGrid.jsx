@@ -62,7 +62,7 @@ export const Grid = () => {
       </div>
 
       <div className="flex justify-between items-center gap-4 md:gap-2 lg:gap-4 flex-wrap md:flex-nowrap">
-        <TotalSlots row={row} col={col} />
+        <TotalSlots/>
         <Occupied/>
         <Available/>
         <TotalRevenue/>

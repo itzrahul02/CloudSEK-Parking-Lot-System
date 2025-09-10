@@ -26,7 +26,7 @@ export const Billing = () => {
   const dispatch=useDispatch()
   const { grid } = useSelector((state) => state.parking);
   const handleCloseParking=()=>{
-    console.log("Here");
+
     const {row,col}=getSlot(receipt.slot)
     dispatch(setRevenue({row:row,col:col,revenue:receipt.totalAmount}))
     dispatch(closeBookedModel())

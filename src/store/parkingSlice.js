@@ -17,7 +17,7 @@ const parkingSlice= createSlice({
     initialState,
     reducers:{
         setRows:(state,action)=>{
-            console.log(action);
+       
             state.row=action?.payload
         },
         setCols:(state,action)=>{
@@ -41,12 +41,12 @@ const parkingSlice= createSlice({
         },
 
         openModel:(state,action)=>{
-            console.log(action.payload);
+       
             state.selectedSlot=action.payload
             state.isModelOpen=true
         },
         openBookedModel:(state,action)=>{
-            console.log("openBookedModel",action.payload);
+        
             state.bookedValues=action.payload
             state.isBookedModelOpen=true
         },
