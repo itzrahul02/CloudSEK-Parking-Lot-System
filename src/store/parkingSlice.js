@@ -25,12 +25,6 @@ const parkingSlice= createSlice({
         },
         createGrid:(state)=>{
             state.grid=[]
-            state.isModelOpen = false
-            state.selectedSlot = null
-            state.isBookedModelOpen = false
-            state.bookedValues = null
-            state.entryTime = null
-            state.revenue = 0
             for(let i=1;i<=state.row;i++){
                 for (let j=1;j<=state.col;j++){
                     state.grid.push({
