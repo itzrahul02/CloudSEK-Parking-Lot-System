@@ -32,7 +32,7 @@ export const Billing = () => {
     dispatch(closeBookedModel())
     navigate('/')
   }
-  const generateReceipt = () => {
+const generateReceipt = () => {
   if (!regNumber) return alert("Enter a registration number");
 
   const slot = grid.find((s) => s && s.carNumber === regNumber);
@@ -49,7 +49,16 @@ export const Billing = () => {
   const minutes = Math.floor((durationSec % 3600) / 60);
   const seconds = durationSec % 60;
 
-  const totalIntervals = Math.max(Math.ceil(durationSec / 30) - 1, 0);
+  // Updated interval logic
+  let initialCost = 5;
+  let additionalCost = 0;
+
+  if (durationSec > 30) {
+    const extraTime = durationSec - 30;
+    additionalCost = Math.ceil(extraTime / 10); 
+  }
+
+  const totalAmount = initialCost + additionalCost;
 
   setReceipt({
     regNumber: slot.carNumber,
@@ -57,9 +66,9 @@ export const Billing = () => {
     entryTime: entryTime.toLocaleTimeString(),
     exitTime: exitTime.toLocaleTimeString(),
     duration: `${hours}h ${minutes}m ${seconds}s`,
-    initialCost: 5,
-    additionalCost: totalIntervals,
-    totalAmount: 5 + totalIntervals,
+    initialCost,
+    additionalCost,
+    totalAmount,
     generatedOn: exitTime.toLocaleDateString("en-US", {
       month: "short",
       day: "numeric",
@@ -67,6 +76,9 @@ export const Billing = () => {
     }),
   });
 };
+
+
+
  useEffect(() => {
   const urlReg = searchParams.get("registrationNumber");
   if (urlReg) {
